@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cabinet Selector</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 15px;
+    }
+    .container { position: relative; display: inline-block; }
+    img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc; }
+    #status {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2e7d32;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>Click a Cubby to Copy Location ID</h3>
+  
+  <div class="container">
+    <!-- Displayed image -->
+    <img src="cab175.jpeg" usemap="#cabinet-map" alt="Storage Cabinet">
+
+    <!-- Clickable coordinate map (Assumes 600x900px base image) -->
+    <map name="cabinet-map">
+      <!-- Top Row -->
+      <area shape="rect" coords="0,0,300,300" href="#" onclick="copyLoc('CAB-A-CUB1')" alt="Cubby 1">
+      <area shape="rect" coords="300,0,600,300" href="#" onclick="copyLoc('CAB-A-CUB2')" alt="Cubby 2">
+      <!-- Middle Row -->
+      <area shape="rect" coords="0,300,300,600" href="#" onclick="copyLoc('CAB-A-CUB3')" alt="Cubby 3">
+      <area shape="rect" coords="300,300,600,600" href="#" onclick="copyLoc('CAB-A-CUB4')" alt="Cubby 4">
+      <!-- Bottom Row -->
+      <area shape="rect" coords="0,600,300,900" href="#" onclick="copyLoc('CAB-A-CUB5')" alt="Cubby 5">
+      <area shape="rect" coords="300,600,600,900" href="#" onclick="copyLoc('CAB-A-CUB6')" alt="Cubby 6">
+    </map>
+  </div>
+
+  <div id="status"></div>
+
+  <script>
+    function copyLoc(locationId) {
+      navigator.clipboard.writeText(locationId).then(() => {
+        const status = document.getElementById('status');
+        status.innerText = 'Copied "' + locationId + '" to clipboard!';
+        setTimeout(() => { status.innerText = ''; }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
